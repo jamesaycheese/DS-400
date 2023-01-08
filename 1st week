@@ -1,0 +1,58 @@
+--slope and lines
+
+import matplotlib.pyplot 
+from matplotlib.pyplot import *
+import numpy 
+from numpy import linspace
+
+x1= 5.0
+y1= 4.0
+x2= -10.0
+y2= -2.0
+slope= (y2-y1)/(x2-x1)
+slope
+
+x= 1.0
+y= y1 + slope*(x-x1)
+print('\nValue of y if x is 1.0 equals {}'.format(y))
+
+equation= str('y = y1 + slope*(x-x1)')
+print('Equation of a line is', equation)
+print('x1 equals {} and y1 equas {}'.format(x1, y1))
+
+x= linspace(-1,8,100)
+y= 6.0 - 1.5*x  
+title('Plot of Linear Equation  '+equation)  # Note how the title appears.
+plot(x,y)
+show()
+
+x= linspace(0,50,100)
+y= 20*x+100.0
+z= 24*x
+
+figure()  
+plot (x,y)
+plot (x,z)
+legend (('cost','revenue'),loc=2)
+title ('Breakeven Analysis')
+show()
+
+
+--least squares lines
+
+from scipy import stats
+x = [20, 30, 40, 50, 60, 70, 80, 90, 100, 110]
+y = [71.2, 80.5, 73.4, 60.3, 52.1, 56.2, 46.5, 36.9, 34.0, 39.1]
+slope, intercept, r_value, p_value, std_err = stats.linregress(x, y)
+predict_2020 = 120 * slope + intercept
+print("slope = ", round(slope, 3))
+print("intercept = ", round(intercept, 1))
+print("The death rate in 2020 will be approximately", round(predict_2020, 1), "per 100,000 population.")
+print("correlation coefficient = ", round(r_value, 3))
+
+/*
+slope =  -0.506
+intercept =  87.9
+The death rate in 2020 will be approximately 27.2 per 100,000 population.
+correlation coefficient =  -0.941
+*/
